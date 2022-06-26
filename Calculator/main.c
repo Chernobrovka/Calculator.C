@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
+#define SIZE 100
 
+#define NUMBER 1000
+
+int main(){
+    
 
 
 

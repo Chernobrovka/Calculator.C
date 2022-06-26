@@ -4,7 +4,6 @@
 #define NUMBER 1000
 
 
-int string_to_int( char str[]);
 int get_op(char op[]);
 
 int get_op(char op[]){
@@ -29,12 +28,4 @@ int get_op(char op[]){
 }
 
 // '\0' ---- the null symbol ( end of file)
-
-int str_to_int(char str[]){
-    int num = 0;
-    int i;
-    for(i = 0; str[i] != '\0'; i++ ) {
-        num = num * 10 + (str[i] - '0');
-    }
-    return num;
-}
+// for transform string to int using::   atoi( const char *str)
