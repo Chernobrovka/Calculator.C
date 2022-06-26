@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define NUMBER 1000
 
@@ -25,4 +26,15 @@ int get_op(char op[]){
 
         return NUMBER;
     }
+}
+
+// '\0' ---- the null symbol ( end of file)
+
+int str_to_int(char str[]){
+    int num = 0;
+    int i;
+    for(i = 0; str[i] != '\0'; i++ ) {
+        num = num * 10 + (str[i] - '0');
+    }
+    return num;
 }
