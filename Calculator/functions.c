@@ -20,7 +20,7 @@ int get_op(char op[]){
     }
     if (isdigit(symbol)){
         op[i] = symbol;
-        while(isdigit(op[++i] = ( c = getchar())));
+        while(isdigit(op[++i] = ( symbol = getchar())));
         op[i] = '\0';
 
         return NUMBER;
