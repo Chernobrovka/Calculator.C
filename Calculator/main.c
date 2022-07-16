@@ -15,17 +15,20 @@ int main(){
                 put(atoi(oper));
                 break;
             case '+':
-                put(get() + ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number")));
+                put(get() + ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
                 break;
             case '-':
-                put(get() - ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number")));
+                put(get() - ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
                 break;
             case '*':
-                put(get() * ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number")));
+                put(get() * ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
                 break;
             case '/':
-                put(get() / ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number")));
-                break;    
+                put(get() / ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+                break; 
+            case '\n':
+                printf("Result = %d\n", get());
+                break;
             default:
                 printf("[-]Throw Error:: Unknown operator / operand\n");
                 break;
