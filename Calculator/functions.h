@@ -5,3 +5,4 @@
 int get_op(char op[]);
 void put(int n);
 int get(void);
+int string_to_int(char str[

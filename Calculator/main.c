@@ -12,22 +12,22 @@ int main() {
     while ((op = get_op(oper)) != 'e') {
         switch (op) {
         case NUMBER:
-            put(atoi(oper));
+            put(string_to_int(oper));
             break;
         case '+':
-            put(get() + ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            put(get() + ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
             break;
         case '-':
-            put(get() - ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            put(get() - ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
             break;
         case '*':
-            put(get() * ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            put(get() * ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
             break;
         case '/':
-            put(get() / ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            put(get() / ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
             break;
         case '%':
-            put(get() % ((get_op(oper) == NUMBER) ? atoi(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            put(get() % ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
             break;
         case '\n':
             printf("Result = %d\n", get());

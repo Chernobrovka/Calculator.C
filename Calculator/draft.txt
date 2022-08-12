@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "functions.h"
+
+#define NUMBER 1000
+
+int string_to_int(char str[]) { // analog of atoi with negative numbers
+    int num = 0;
+    int neg;
+    int i = 0;
+
+    neg = (str[i] == "-") ? -1 : 1;
+    if (str[i] == "-")
+        i++;
+    for ( ; str[i] != "\0"; i++)
+        num = num * 10 + (str[i] - '0');
+    return num * neg;
+}
+
+int get_op(char op[]) {
+    /*static*/ int symbol = 0;
+    static int remember = 0;
+    int i = 0;
+    if (remember != 0) {
+        symbol = remember;
+        remember = 0;
+    }
+    else {
+        symbol = getchar();
+    }
+    while (symbol == ' ' || symbol == '\t') {   //skipping spaces at the beginning
+        symbol = getchar();
+    }
+    if (symbol == "-") {
+        op[i] = symbol;
+        if (isdigit(op[++i] = (symbol = getchar()))) {
+            while (isdigit(op[++i] = (symbol = getchar())));
+            
+            remember = symbol;
+            op[i] = "\0";
+
+            return NUMBER; // negative number
+        }
+        else {
+            return "-";
+        }
+        if (isdigit(symbol)) { //write the number
+            op[i] = symbol;
+            while (isdigit(op[++i] = (symbol = getchar())));
+
+            remember = symbol;
+            op[i] = "\0";
+            return NUMBER;
+        }
+        else {
+            return symbol;
+        }
+    }
+}
+
+// '\0' ---- the null symbol ( end of file)
+// for transform string to int using:: atoi( const char *str)
+
+#define STEKSIZE 100
+int stek[STEKSIZE];
+int free_si = 0;
+
+void put(int n) {
+    if (free_si < STEKSIZE) {
+        stek[free_si++] = n;
+    }
+    else {
+        printf("[-]Throw Error: Stek is overflow!\n");
+    }
+}
+
+int get(void) {
+    if (free_si > 0) {
+        return stek[--free_si];
+    }
+    else {
+        printf("[-]Throw Error: Stek is Empty!\n");
+    }
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "functions.h"
+
+#define SIZE 100
+
+#define NUMBER 1000
+
+int main() {
+    char oper[SIZE];
+    int op;
+    while ((op = get_op(oper)) != 'e') {
+        switch (op) {
+        case NUMBER:
+            put(string_to_int(oper));
+            break;
+        case '+':
+            put(get() + ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            break;
+        case '-':
+            put(get() - ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            break;
+        case '*':
+            put(get() * ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            break;
+        case '/':
+            put(get() / ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            break;
+        case '%':
+            put(get() % ((get_op(oper) == NUMBER) ? string_to_int(oper) : printf("Throw ERROR:: Calculator don't found a number\n")));
+            break;
+        case '\n':
+            printf("Result = %d\n", get());
+            break;
+        default:
+            printf("[-]Throw Error:: Unknown operator / operand\n");
+            break;
+        }
+    }
+
+
+
+    return 0;
+}
+
