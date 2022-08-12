@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-int get_op(char op[]);
+#define STEK_SIZE 100
+
+int doLastOp(char* oper, char lastOp);
+int string_to_int(char str[]);
+char get_op(char op[]);
 void put(int n);
 int get(void);
-int string_to_int(char str[
