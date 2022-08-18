@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "functions.h"
 #include "equeue.h"
 
@@ -15,10 +16,10 @@ int main()
 	scanf_s("%199s", oper);
 
 	char symbol;
-	int i = 0;
+	static int i = 0;
 	int result;
-	char expression[BUFFER] = "";
-	char expression_second[BUFFER] = "";
+	char expression[BUFFER] = { '/0' };
+	char expression_second[BUFFER] = { '/0' };
 	while (oper[i] != '\0') {		// cycle if symbol != EOF
 		if (oper[i] == " " || oper[i] == "\t") {
 			i++;
@@ -33,18 +34,21 @@ int main()
 				i++;
 			}
 			else if (isdigit(oper[++i]) == 1) {	// if op[i++] is digit ( 1 == true )
-				for (int j = i; isdigit(oper[j]) == 0; j++) {
-					expression[j] = oper[i] + '0';
+				for (; isdigit(oper[i]) == 1; i++) {						// 36 & 45 string have same testExpression
+					/*expression[j] = oper[i] + '0';*/
+					strcpy(expression[i], oper[i]);
 				}
 				enqueue(string_to_int(expression));	// TO DO
 				i++;
 			}
 		}
 		else if (isdigit(oper[i]) == 1) {
-			for (int j = i; oper[j] != " " && oper[j] != "\t" && oper[j] != '\0' && oper[j] != "\n"; j++) {
-				expression_second[j] = oper[i] + '0';
+			for (; oper[i] != " " && oper[i] != "\t" && oper[i] != '\0' && oper[i] != "\n"; i++) {
+				/*expression_second[j] = oper[i] + '0';*/
+				strcpy(expression_second[i], oper[i]);	
 			}
-			enqueue(string_to_int(expression_second));	// TO DO
+			enqueue(string_to_int(expression_second)); //TO DO
+			i++;
 		}
 
 	}
