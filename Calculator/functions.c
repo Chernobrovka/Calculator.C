@@ -4,11 +4,6 @@
 #include "functions.h"
 #include "equeue.h" 
 
-
-#define NUMBER 1000
-//#define STEKSIZE 1024
-//#define BUFFER 100
-
 int string_to_int(char str[]) { // analog of atoi with negative numbers
 	int num = 0;
 	int neg;

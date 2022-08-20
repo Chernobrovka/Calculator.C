@@ -4,50 +4,52 @@
 #include "functions.h"
 #include "equeue.h"
 
-#define BUFFER 1024
-#define OP_SIZE 200
+#define BUFFER 200
 
 int main()
 {
-	char oper[BUFFER];
-	/*char op[OP_SIZE];*/
+	char buffer[BUFFER];
 
 	printf("Enter the mathematical expression:\n");
-	scanf_s("%199s", oper);
 
-	char symbol;
+	gets(buffer);
+
 	static int i = 0;
-	int result;
+
+	char symbol=0;
+	int result=0;
 	char expression[BUFFER] = { '/0' };
-	char expression_second[BUFFER] = { '/0' };
-	while (oper[i] != '\0') {		// cycle if symbol != EOF
-		if (oper[i] == " " || oper[i] == "\t") {
+	while (buffer[i] != '\0') {		// cycle if symbol != EOF
+
+		if (buffer[i] == '+' || buffer[i] == '*' || buffer[i] == '/' || buffer[i] == '%') {
+			symbol = buffer[i];
 			i++;
 		}
-		else if (oper[i] == "+" || oper[i] == "*" || oper[i] == "/" || oper[i] == "%") {
-			symbol = oper[i];
-			i++;
-		}
-		else if (oper[i] == "-") {		// search negative numbers
-			if (isdigit(oper[++i]) == 0) {	// if op[i] is not digit then nothing happens ( 0 == false )
+		else if (buffer[i] == "-") {		// search negative numbers
+			if (isdigit(buffer[++i]) == 0) {	// if op[i] is not digit then nothing happens ( 0 == false )
 				symbol = "-";
 				i++;
 			}
-			else if (isdigit(oper[++i]) == 1) {	// if op[i++] is digit ( 1 == true )
-				for (; isdigit(oper[i]) == 1; i++) {						// 36 & 45 string have same testExpression
-					/*expression[j] = oper[i] + '0';*/
-					strcpy(expression[i], oper[i]);
+			else {	// if op[i++] is digit ( 1 == true )
+				int j=1;
+				expression[0] = '-';
+				for (; isdigit(buffer[i]); j++,i++) {						// 36 & 45 string have same testExpression
+					/*expression[j] = buffer[i] + '0';*/
+					expression[j] = buffer[i];
 				}
+				expression[j] = 0;
 				enqueue(string_to_int(expression));	// TO DO
-				i++;
 			}
 		}
-		else if (isdigit(oper[i]) == 1) {
-			for (; oper[i] != " " && oper[i] != "\t" && oper[i] != '\0' && oper[i] != "\n"; i++) {
-				/*expression_second[j] = oper[i] + '0';*/
-				strcpy(expression_second[i], oper[i]);	
+		else if (isdigit(buffer[i])) {
+			int j;
+			for (j = 0; isdigit(buffer[i]); j++, i++) {						// 36 & 45 string have same testExpression
+				expression[j] = buffer[i];
 			}
-			enqueue(string_to_int(expression_second)); //TO DO
+			expression[j] = 0;
+			enqueue(string_to_int(expression));	// TO DO
+		}
+		else {
 			i++;
 		}
 
@@ -55,36 +57,22 @@ int main()
 
 	switch (symbol) {
 	case '+':
-		result = peek() + peek();
-		dequeue();
-		dequeue();
-		printf(result);
+		result = dequeue() + dequeue();
 		break;
 	case '-':
-		result = peek() - peek();
-		dequeue();
-		dequeue();
-		printf(result);
+		result = dequeue() - dequeue();
 		break;
 	case '*':
-		result = peek() * peek();
-		dequeue();
-		dequeue();
-		printf(result);
+		result = dequeue() * dequeue();
 		break;
 	case '/':
-		result = peek() / peek();
-		dequeue();
-		dequeue();
-		printf(result);
+		result = dequeue() / dequeue();
 		break;
 	case '%':
-		result = peek() % peek();
-		dequeue();
-		dequeue();
-		printf(result);
+		result = dequeue() % dequeue();
 		break;
 	}
+	printf("%d", result);
 
 
 	return 0;

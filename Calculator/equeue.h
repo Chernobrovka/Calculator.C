@@ -8,5 +8,4 @@ struct Node;
 struct Node* newNode(int item);
 int dequeue();
 void enqueue(int item);
-int peek();
 int isEmpty();
