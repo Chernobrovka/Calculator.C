@@ -1,3 +1,8 @@
+// ver 1
+//TO DO:
+//1) Enable opetions on multiple >2 numbers
+//2) add sin/cos/abs/pow on math.h
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,7 +39,6 @@ int main()
 				int j=1;
 				expression[0] = '-';
 				for (; isdigit(buffer[i]); j++,i++) {						// 36 & 45 string have same testExpression
-					/*expression[j] = buffer[i] + '0';*/
 					expression[j] = buffer[i];
 				}
 				expression[j] = 0;
