@@ -1,7 +1,6 @@
-// ver 1
+// ver 1.1
 //TO DO:
-//1) Enable opetions on multiple >2 numbers
-//2) add sin/cos/abs/pow on math.h
+//1) add sin/cos/abs/pow on math.h
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +12,7 @@
 
 int main()
 {
-	char buffer[BUFFER];
+	char buffer[BUFFER] = { '/0' };
 
 	printf("Enter the mathematical expression:\n");
 
@@ -35,47 +34,57 @@ int main()
 				symbol = "-";
 				i++;
 			}
-			else {	// if op[i++] is digit ( 1 == true )
+			else {	// if elem is digit
 				int j=1;
 				expression[0] = '-';
-				for (; isdigit(buffer[i]); j++,i++) {						// 36 & 45 string have same testExpression
+				for (; isdigit(buffer[i]); j++,i++) {	
 					expression[j] = buffer[i];
 				}
 				expression[j] = 0;
-				enqueue(string_to_int(expression));	// TO DO
+				enqueue(string_to_int(expression));
 			}
 		}
 		else if (isdigit(buffer[i])) {
 			int j;
-			for (j = 0; isdigit(buffer[i]); j++, i++) {						// 36 & 45 string have same testExpression
+			for (j = 0; isdigit(buffer[i]); j++, i++) {						
 				expression[j] = buffer[i];
 			}
 			expression[j] = 0;
-			enqueue(string_to_int(expression));	// TO DO
+			enqueue(string_to_int(expression));	
 		}
 		else {
 			i++;
 		}
 
+		
+		if (symbol != 0 && (getlength() == 2)) {
+			switch (symbol) {
+			case '+':
+				result = dequeue() + dequeue();
+				break;
+			case '-':
+				result = dequeue() - dequeue();
+				break;
+			case '*':
+				result = dequeue() * dequeue();
+				break;
+			case '/':
+				result = dequeue() / dequeue();
+				break;
+			case '%':
+				result = dequeue() % dequeue();
+				break;
+			}
+			if (buffer[i++] != '\0') {
+				enqueue(result);
+				symbol = 0;
+			}
+		}
+			
+
 	}
 
-	switch (symbol) {
-	case '+':
-		result = dequeue() + dequeue();
-		break;
-	case '-':
-		result = dequeue() - dequeue();
-		break;
-	case '*':
-		result = dequeue() * dequeue();
-		break;
-	case '/':
-		result = dequeue() / dequeue();
-		break;
-	case '%':
-		result = dequeue() % dequeue();
-		break;
-	}
+	
 	printf("%d", result);
 
 

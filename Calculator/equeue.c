@@ -69,3 +69,17 @@ void enqueue(int item) {
 int isEmpty() {
 	return front == NULL;
 }
+
+int getlength() {
+	int len = 0;
+	struct Node* el = front;
+	if (el == NULL) {
+		return len; // 0
+	}
+	do {
+		el = el->next;
+		len++;
+	} while (el);
+	return len;
+}
+
