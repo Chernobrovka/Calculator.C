@@ -15,6 +15,6 @@ struct Node {
 
 struct Node* newNode(int item);
 int dequeue();
-void enqueue(int item);
+void enqueue(double item);
 int isEmpty();
 int getlength();
