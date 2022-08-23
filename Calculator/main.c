@@ -1,4 +1,4 @@
-// ver 1.2
+// ver 1.3 (not ended)
 //TO DO:
 //1) add sin/cos/abs/pow on math.h
 
@@ -47,13 +47,21 @@ int main()
 				enqueue(string_to_double(expression));
 			}
 		}
-		/*else if (isalpha((int)buffer[i])) {
+		else if (isalpha((int)buffer[i])) {
 			int j;
 			for (j = 0; isalpha((int)buffer[i]); j++, i++) {
 				math_operation[j] = buffer[i];
-				
 			}
-		}*/
+			if (is_math_operation(math_operation) == 1) {
+				if (isdigit(buffer[i])) {
+					int j;
+					for (j = 0; isdigit(buffer[i]) || buffer[i] == '.'; j++, i++) {
+						expression[j] = buffer[i];
+					}
+					expression[j] = 0;
+				}
+			}
+		}
 		else if (isdigit(buffer[i])) {
 			int j; 
 			for (j = 0; isdigit(buffer[i]) || buffer[i] == '.'; j++, i++) {

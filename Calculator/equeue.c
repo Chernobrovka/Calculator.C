@@ -82,4 +82,3 @@ int getlength() {
 	} while (el);
 	return len;
 }
-

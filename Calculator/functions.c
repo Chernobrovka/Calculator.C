@@ -8,6 +8,13 @@
 #define ASIN "asin"
 #define ATAN "atan"
 #define COS "cos"
+#define SIN "sin"
+#define EXP "exp"
+#define LOG "log"
+#define LG "lg" // log10
+#define POW "pow"
+#define SQRT "sqrt"
+
 
 int string_to_int(char str[]) { // analog of atoi with negative numbers
 	int num = 0;
@@ -22,10 +29,44 @@ int string_to_int(char str[]) { // analog of atoi with negative numbers
 	return num * neg;
 }
 
-//void is_math_operation(char str[]) {	// compares string and math compares
-//	extern math_operation;
-//	/*strcmpi()*/
-//}
+int is_math_operation(char str[]) {	// compares string and math compares
+	extern math_operation;
+	
+	if (strcmpi(str, ACOS) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, ASIN) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, ATAN) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, COS) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, SIN) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, EXP) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, LOG) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, LG) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, POW) == 0) {
+		return 1;
+	}
+	else if (strcmpi(str, SQRT) == 0) {
+		return 1;
+	}
+	else {
+		return -1;
+		printf("Error: there is no such mathematical operation");
+	}
+}
 
 double string_to_double(char s[])
 {
@@ -46,4 +87,3 @@ double string_to_double(char s[])
 	}
 	return sign * val / power;
 }
-
