@@ -12,7 +12,7 @@
 #define EXP "exp"
 #define LOG "log"
 #define LG "lg" // log10
-#define POW "pow"
+#define POW "pow"  // only to 2 
 #define SQRT "sqrt"
 
 
@@ -65,6 +65,50 @@ int is_math_operation(char str[]) {	// compares string and math compares
 	else {
 		return -1;
 		printf("Error: there is no such mathematical operation");
+	}
+}
+
+double do_math_operation(char* math[], char* expr[]){
+	double result;
+	if (strcmpi(math, ACOS) == 0) {
+		result = acos(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, ASIN) == 0) {
+		result = asin(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, ATAN) == 0) {
+		result = atan(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, COS) == 0) {
+		result = cos(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, SIN) == 0) {
+		result = sin(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, EXP) == 0) {
+		result = exp(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, LOG) == 0) {
+		result = log(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, LG) == 0) {
+		result = log10(string_to_double(expr));
+		return result;
+	}
+	else if (strcmpi(math, POW) == 0) {
+		result = pow(string_to_double(expr), 2.0);
+		return result;
+	}
+	else if (strcmpi(math, SQRT) == 0) {
+		result = sqrt(string_to_double(expr));
+		return result;
 	}
 }
 

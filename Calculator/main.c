@@ -1,6 +1,6 @@
-// ver 1.3 (not ended)
+// ver 1.3 ( string calc with sin/cos/exp/pow)
 //TO DO:
-//1) add sin/cos/abs/pow on math.h
+//1) add priority of math operations
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,7 +47,7 @@ int main()
 				enqueue(string_to_double(expression));
 			}
 		}
-		else if (isalpha((int)buffer[i])) {
+		else if (isalpha((int)buffer[i])) {  // search math operations
 			int j;
 			for (j = 0; isalpha((int)buffer[i]); j++, i++) {
 				math_operation[j] = buffer[i];
@@ -59,6 +59,7 @@ int main()
 						expression[j] = buffer[i];
 					}
 					expression[j] = 0;
+					enqueue(do_math_operation(math_operation, expression));
 				}
 			}
 		}

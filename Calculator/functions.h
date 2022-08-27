@@ -5,4 +5,5 @@
 
 int string_to_int(char str[]);
 int is_math_operation(char str[]);
+double do_math_operation(char* math[], char* exp[]);
 double string_to_double(char s[]);
