@@ -38,7 +38,7 @@ int dequeue() {
 	}
 
 	// return the delete elem if necessary
-	int item = temp->data;
+	double item = temp->data;
 
 	// free the memory of node 
 	free(temp);
@@ -47,7 +47,7 @@ int dequeue() {
 }
 
 // function for add the elem to queue
-void enqueue(int item) {
+void enqueue(double item) {
 	//single out new node at heap
 	struct Node* node = newNode(item);
 	node->data = item;
@@ -68,4 +68,17 @@ void enqueue(int item) {
 
 int isEmpty() {
 	return front == NULL;
+}
+
+int getlength() {
+	int len = 0;
+	struct Node* el = front;
+	if (el == NULL) {
+		return len; // 0
+	}
+	do {
+		el = el->next;
+		len++;
+	} while (el);
+	return len;
 }
