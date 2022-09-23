@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "equeue.h"
 
 
 
@@ -16,3 +15,5 @@ double do_math_operation(char* math[], char* exp[]);
 double string_to_double(char s[]);
 
 void convertNumber(char* buffer, int i, char* expression, int j, struct DblLinkedList* list);
+
+double createListOperations(struct DblLinkedList* list);

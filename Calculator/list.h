@@ -30,7 +30,7 @@ void pushBack(struct DblLinkedList* list, void* value);
 
 void* popBack(struct DblLinkedList* list);
 
-struct Node* getNthq(struct DblLinkedList* list, size_t index);
+struct Node* getNth(struct DblLinkedList* list, size_t index);
 
 void insert(struct DblLinkedList* list, size_t index, void* value);
 
@@ -40,5 +40,4 @@ void printDblLinkedList(struct DblLinkedList* list, void (*fun)(void*));
 
 struct DblLinkedList* fromArray(void* arr, size_t n, size_t size);
 
-void* getLength(struct DblLinkedList* list);
-
+int getLength(struct DblLinkedList* list);
