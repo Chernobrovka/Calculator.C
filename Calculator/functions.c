@@ -20,6 +20,10 @@
 #define TYPE_OPERATOR 'O'
 #define TYPE_NUMBER 'N'
 
+#define _DEBUG_OPERATION_WHILE
+
+//#define _DEBUG_OPERATION_WHILE 
+#define _DEBUG_StringToDouble
 
 int string_to_int(char str[]) { // analog of atoi with negative numbers
 
@@ -87,7 +91,7 @@ int is_math_operation(char str[]) {	// compares string and math compares
 }
 
 
-double do_math_operation(char* math[], char* expr[]) {
+double do_math_operation(string math[], string expr[]) {
 	double result;
 	if (strcmpi(math, ACOS) == 0) {
 		result = acos(string_to_double(expr));
@@ -171,7 +175,7 @@ double string_to_double(char s[])
 }
 
 
-void convertNumber(char* buffer, int i, char* expression, short int j, struct DblLinkedList* list)
+void convertNumber(char* buffer, int i, string expression, short int j, struct DblLinkedList* list)
 {
 
 #ifdef _DEBUG_ConvertNumber
@@ -182,7 +186,7 @@ void convertNumber(char* buffer, int i, char* expression, short int j, struct Db
 	printf("Index j: %d"\n, j);
 #endif
 
-	for (; isdigit(buffer[i]) || buffer[i] == '.'; j++, i++) {
+	for (; isdigit(buffer[i]) || buffer[i] == '.';  (j)++, (i)++) {
 		expression[j] = buffer[i];
 	}
 	expression[j] = 0;
@@ -197,7 +201,7 @@ double createListOperations(struct DblLinkedList* list) {
 	
 	double result = 0.0;
 	int index = 0;
-	while (index <= getLength(list)) {
+	while (index < getLength(list)) {
 
 		#ifdef _DEBUG_OPERATION_WHILE 
 				printf("### RUN while cycle with operations:\n");
@@ -256,7 +260,7 @@ double createListOperations(struct DblLinkedList* list) {
 
 	index = 0;
 
-	while (index <= getLength(list)) {
+	while (index < getLength(list)) {
 		#ifdef _DEBUG_OPERATION_WHILE 
 				printf("### RUN while cycle with operations:\n");
 				printf("### Counter: %d\n", index);
@@ -289,6 +293,7 @@ double createListOperations(struct DblLinkedList* list) {
 						deleteNth(list, (index - 1));
 						deleteNth(list, (index + 1));
 						index = 0;
+						result = 0.0;
 					}
 
 					else if (pLex->d.valueChar == '-') {
@@ -306,6 +311,7 @@ double createListOperations(struct DblLinkedList* list) {
 						deleteNth(list, (index - 1));
 						deleteNth(list, (index + 1));
 						index = 0;
+						result = 0.0;
 					}
 				}
 				else index++;
@@ -317,7 +323,7 @@ double createListOperations(struct DblLinkedList* list) {
 				printf("### RUN function who create result\n");
 		#endif 
 
-		struct Lexeme* res = getNth(list, 0)->value;
+		struct Lexeme* res = getNth(list, 0);
 		if (res->type == TYPE_NUMBER) {
 			result = res->d.valueDouble;
 		}
@@ -325,5 +331,6 @@ double createListOperations(struct DblLinkedList* list) {
 
 	return result;
 }
+
 
 

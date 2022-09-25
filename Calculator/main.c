@@ -1,4 +1,4 @@
-// ver 1.4 beta  ( string calc with sin/cos/exp/pow)
+// ver 1.5 beta  ( string calc with sin/cos/exp/pow)
 //TO DO:
 // Not ended version on commit
 
@@ -16,6 +16,7 @@
 #define BUFFER_EXPRESSION 10
 #define BUFFER_MATH_OP 4
 
+#define _DEBUG_MAIN
 
 int main()
 {
@@ -34,7 +35,10 @@ int main()
 	char expression[BUFFER_EXPRESSION] = { '/0' };
 	char math_operation[BUFFER_MATH_OP] = { '/0' };
 	while (buffer[i] != '\0') {		// cycle if symbol != EOF
-		if (buffer[i] == '+' || buffer[i] == '*' || buffer[i] == '/' || buffer[i] == '%') {
+		if (buffer[i] == ' ') {
+			i++;
+		}
+		else if (buffer[i] == '+' || buffer[i] == '*' || buffer[i] == '/' || buffer[i] == '%') {
 
 			struct Lexeme* operation = malloc(sizeof(struct Lexeme));
 			operation->type = TYPE_OPERATOR;
@@ -54,6 +58,10 @@ int main()
 
 				// No. if op[i] is not digit then nothing happens ( 0 == false )
 
+				#ifdef _DEBUG_MAIN
+						printf("### Minus is operation!\n");
+				#endif
+
 				struct Lexeme* operation = malloc(sizeof(struct Lexeme));
 				operation->type = TYPE_OPERATOR;
 				operation->d.valueChar = buffer[i];
@@ -63,28 +71,12 @@ int main()
 				// Yes.
 				// if next elements is digit?
 
-				/*expression[0] = '-';
-				convertNumber(buffer, i, expression, 1, list);*/
-
-				short int j = 1;
-				expression[0] = '-';
-				for (; isdigit(buffer[i]) || buffer[i] == '.'; j++, i++) {
-				 	expression[j] = buffer[i];
-				 }
-				
-				expression[j] = 0;
-
 				#ifdef _DEBUG_MAIN
-				printf("### Negative Number: ");
-				printf("%s\n", expression);
-
+					printf("### Minus is start of number\n");
 				#endif
 
-				// push negative numbers to list
-				struct Lexeme *operation = malloc(sizeof(struct Lexeme));
-				operation->type = TYPE_NUMBER;
-				operation->d.valueDouble = string_to_double(expression);
-				pushBack(list, operation);
+				expression[0] = '-';
+				convertNumber(buffer, i, expression, 1, list);
 				i++;
 			}
 		}
@@ -110,9 +102,9 @@ int main()
 				printf("Error: there is no such mathematical operation\n");
 		}
 		else if (isdigit(buffer[i])) {
+
 			convertNumber(buffer, i, expression, 0, list);
 			i++;
-			
 		}
 		else {
 			i++;
@@ -128,5 +120,4 @@ int main()
 
 	return 0;
 }
-
 

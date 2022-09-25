@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-
+typedef char* string;
 
 int string_to_int(char str[]);
 
