@@ -41,3 +41,6 @@ void printDblLinkedList(struct DblLinkedList* list, void (*fun)(void*));
 struct DblLinkedList* fromArray(void* arr, size_t n, size_t size);
 
 int getLength(struct DblLinkedList* list);
+
+
+

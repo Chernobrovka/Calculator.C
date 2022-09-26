@@ -1,6 +1,5 @@
 #include "list.h"
 
-//#define _DEBUG_GETLENGTH
 
 struct DblLinkedList* createDblLinkedList() {
     struct DblLinkedList* tmp = (struct DblLinkedList*)malloc(sizeof(struct DblLinkedList));
@@ -215,8 +214,8 @@ struct DblLinkedList* fromArray(void* arr, size_t n, size_t size) {        // cr
 int getLength(struct DblLinkedList* list) {
     int result = list->size;
 
-    #ifdef _DEBUG_GETLENGTH
-         printf("Elems in list: %d\n\n", result);
-    #endif
+#ifdef _DEBUG_GETLENGTH
+    printf("Elems in list: %d\n\n", result);
+#endif
     return result;
 }
