@@ -8,15 +8,15 @@
 
 
 union data {
-	double valueDouble;
-	char valueChar;
-	// char *valueString;
+    double valueDouble;
+    char valueChar;
+    // char *valueString;
 };
 
 struct Lexeme {
-	// 'N' - number
-	// 'O' - operator(+,-,...)
-	// 'F' - function(cos,sin,...)
-	char type;
-	union data d;
+    // 'N' - number
+    // 'O' - operator(+,-,...)
+    // 'F' - function(cos,sin,...)
+    char type;
+    union data d;
 };

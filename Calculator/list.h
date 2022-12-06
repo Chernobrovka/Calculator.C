@@ -6,15 +6,15 @@
 
 
 struct Node {
-	void* value;
-	struct Node* next;
-	struct Node* prev;
+    void* value;
+    struct Node* next;
+    struct Node* prev;
 };
 
 struct DblLinkedList {
-	size_t size;
-	struct Node* head;
-	struct Node* tail;
+    size_t size;
+    struct Node* head;
+    struct Node* tail;
 };
 
 
@@ -44,3 +44,5 @@ int getLength(struct DblLinkedList* list);
 
 
 
+
+//https://learnc.info/adt/double_linked_list.html
