@@ -1,0 +1,3 @@
+How to use test: 
+power shell:  
+D:rootFolder/Calculator.exe test.bat
